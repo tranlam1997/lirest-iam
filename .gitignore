@@ -1,0 +1,26 @@
+node_modules
+
+dist
+
+tsconfig.tsbuildinfo
+
+.eslintcache
+
+# ignore all logs
+*.log
+
+.husky
+
+.vscode
+
+certs/*
+
+config.txt
+
+# ignore all .env files
+.env*
+!.env.example
+
+coverage
+
+logs

@@ -1,0 +1,22 @@
+# Service config
+service:
+  protocol: LIREST_AUTHENTICATION_SERVICE
+  host: LIREST_AUTHENTICATION_SERVICE_HOST
+  port: LIREST_AUTHENTICATION_SERVICE_PORT
+  path: LIREST_AUTHENTICATION_SERVICE_PATH
+
+# Database configuration
+mysql:
+  host: MYSQL_HOST_NAME
+  port: MYSQL_PORT
+  username: MYSQL_USERNAME
+  password: MYSQL_PASSWORD
+  database: MYSQL_DATABASE_NAME
+
+# Swagger username and password
+api-docs:
+  username: API_DOCS_USERNAME
+  password: API_DOCS_PASSWORD
+
+# Log config
+logLevel: LIREST_GATEWAY_LOG_LEVEL

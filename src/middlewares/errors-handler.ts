@@ -1,13 +1,41 @@
 import { Request, Response, NextFunction } from 'express';
+import { HttpException } from '../errors/exceptions/http-exceptions';
+import { logger } from '../common/winston';
+import { ResultResponse } from '../shared/response-format';
 
-export const errorLogger = (err: any, _req: Request, _res: Response, next: NextFunction) => {
-  console.error('\x1b[31m', err.response);
-  next(err);
-};
+const ErrorHandlerLogger = logger('Error');
+// global error handler
+export default function errorHandlerMiddleware(
+  err: unknown,
+  _req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  if (err instanceof HttpException) {
+    ErrorHandlerLogger.error({
+      message: err.message,
+      stack: err.stack,
+    });
 
-export const errorResponder = (err: any, _req: Request, res: Response, _next: NextFunction) => {
-  res.header('Content-Type', 'application/json');
-  res.status(err.response.statusCode).send(err.response);
-};
+    return ResultResponse.error(res, {
+      statusCode: err.response.statusCode,
+      response: err.response,
+    })
+  }
 
-export const ErrorHandlerMiddlewares = [errorLogger, errorResponder];
+  if (err instanceof Error) {
+    ErrorHandlerLogger.error({
+      message: err.message,
+      stack: err.stack,
+    });
+
+    return ResultResponse.error(res, {
+      statusCode: 500,
+      response: {
+        message: err.message,
+      },
+    })
+  }
+
+  return next();
+}

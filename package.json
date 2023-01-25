@@ -1,7 +1,7 @@
 {
-  "name": "lirest-authentication-service",
+  "name": "lirest-iam",
   "version": "0.1.0",
-  "description": "Authentication system for Lirest app",
+  "description": "Identity and access management for Lirest app",
   "main": "src/main.ts",
   "engines": {
     "node": ">= 16.x",
@@ -20,12 +20,7 @@
     "build": "tsc -b ./tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "start": "ts-node -r tsconfig-paths/register .",
     "start:prod": "node dist/main.js",
-    "start:dev": "tsnd --respawn --clear --transpile-only -r tsconfig-paths/register . --ignore-watch \"src/**/*.spec.ts\" node_modules",
-    "typeorm": "typeorm-ts-node-commonjs",
-    "migration:create": "cross-var pnpm run typeorm migration:create ./src/migrations/$npm_config_name",
-    "migration:generate": "cross-var pnpm run typeorm migration:generate ./src/migrations/$npm_config_name",
-    "migration:run": "pnpm run typeorm migration:run",
-    "migration:revert": "pnpm run typeorm migration:revert"
+    "start:dev": "tsnd --respawn --clear --transpile-only -r tsconfig-paths/register . --ignore-watch \"src/**/*.spec.ts\" node_modules"
   },
   "keywords": [],
   "author": "Tran Tuan Lam",
@@ -49,24 +44,22 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@keycloak/keycloak-admin-client": "^20.0.3",
     "cls-hooked": "^4.2.2",
     "config": "^3.3.8",
     "cross-var": "^1.1.0",
     "express": "^4.18.2",
     "express-basic-auth": "^1.2.1",
     "express-winston": "^4.2.0",
-    "keycloak-connect": "^20.0.3",
     "lightship": "^7.1.1",
-    "mysql2": "^2.3.3",
+    "mongoose": "^6.8.4",
+    "mongoose-paginate-v2": "^1.7.1",
     "openapi-types": "^12.1.0",
+    "reflect-metadata": "^0.1.13",
     "request-ip": "^3.3.0",
     "rimraf": "^3.0.2",
     "swagger-jsdoc": "^6.2.7",
     "swagger-ui-express": "^4.6.0",
     "tsconfig-paths": "^4.1.2",
-    "typeorm": "^0.3.11",
-    "typeorm-naming-strategies": "^4.1.0",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1",
     "winston-transport": "^4.5.0"

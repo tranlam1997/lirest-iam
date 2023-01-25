@@ -1,7 +1,8 @@
+import { Application } from 'express';
+import {serve, SwaggerUiOptions, setup } from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
-import { SwaggerUiOptions } from 'swagger-ui-express';
-import fs from 'fs';
 import config from 'config';
+import fs from 'fs';
 import path from 'path';
 
 const customCss = fs.readFileSync(path.resolve(__dirname, 'swagger-ui-custom.css'), 'utf8');
@@ -10,9 +11,9 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Lirest Authentication',
+      title: 'lirest-iam',
       version: '0.1.0',
-      description: 'API documentation for Lirest Authentication Service',
+      description: 'API documentation for Lirest IAM service',
       termsOfService: 'http://example.com/terms/',
       contact: {
         name: 'Support Team',
@@ -36,27 +37,15 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
         description: 'Test service connection',
       },
       {
-        name: 'User',
-        description: 'User operations',
-      },
-      {
-        name: 'Book',
-        description: 'Book operations',
-      },
-      {
-        name: 'Auth',
-        description: 'Auth operations',
-      },
-      {
-        name: 'Category',
-        description: 'Category operations',
-      },
+        name: 'Role',
+        description: 'Role operations',
+      }
     ],
   },
   apis: ['./src/api-docs/**/*.yaml'],
 };
 
-export const swaggerUIOptions: SwaggerUiOptions = {
+const swaggerUIOptions: SwaggerUiOptions = {
   explorer: true,
   customCss,
   swaggerOptions: {
@@ -68,4 +57,7 @@ export const swaggerUIOptions: SwaggerUiOptions = {
   },
 };
 
-export const openAPISpecification = swaggerJSDoc(oaS3Options);
+
+export default (app: Application): void => {
+  app.use('/api-docs', serve, setup(swaggerJSDoc(oaS3Options), swaggerUIOptions));
+}

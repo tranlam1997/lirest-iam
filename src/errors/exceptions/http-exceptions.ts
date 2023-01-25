@@ -1,22 +1,13 @@
-import { isObject, isString } from '@src/shared/helper';
-import { HttpStatusCode, HttpStatusCodeMessages } from '../error.enum';
+import { isObject } from '@src/shared/helper';
+import { HttpStatusCode, HttpStatusCodeMessages } from '../errors.enum';
 
 export class HttpException extends Error {
-  private readonly response: string | Record<string, any>;
+  public readonly response: Record<string, any>;
 
-  constructor(response: string | Record<string, any>) {
+  constructor(response: Record<string, any>) {
     super();
     this.response = response;
-  }
-
-  initMessage(): void {
-    if (isString(this.response)) {
-      this.message = this.response;
-    } else if (isObject(this.response)) {
-      this.message = this.response.message;
-    } else if (this.constructor) {
-      this.message = this.constructor.name.match(/[A-Z][a-z]+|[0-9]+/g)?.join(' ') || 'Error';
-    }
+    Error.captureStackTrace(this, this.constructor);
   }
 
   static createBody(objectOrError: string | Record<string, any>, statusCode: HttpStatusCode) {

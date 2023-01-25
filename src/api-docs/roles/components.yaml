@@ -1,0 +1,62 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    Role:
+      type: object
+      properties:
+        name:
+          type: string
+          description: role name
+          example: admin
+        description:
+          type: string
+          description: role description
+          example: admin role
+        roleType:
+          type: string
+          enum: [service, app]
+          description: type of role
+          example: app
+        manageServices:
+          type: array
+          items:
+            type: string
+            description: service name
+            example: lirest-user-service
+        permission:
+          type: object
+          properties:
+            name:
+              type: string
+              description: permission name
+              example: 'read:user'
+            value:
+              type: striing
+              description: permission value
+              example: 'read:user'
+  requestBodies:
+    CreateRoleRequestBody:
+      description: Role data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Role"
+  responses:
+    201CreateRoleSuccess:
+      description: Create role successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+    200UpdateRoleSuccess:
+      description: Update role successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true

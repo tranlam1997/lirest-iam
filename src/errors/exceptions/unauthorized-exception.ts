@@ -1,4 +1,4 @@
-import { HttpStatusCode } from '../error.enum';
+import { HttpStatusCode } from '../errors.enum';
 import { HttpException } from './http-exceptions';
 
 export class UnauthorizedException extends HttpException {

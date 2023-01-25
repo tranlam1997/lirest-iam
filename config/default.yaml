@@ -1,22 +1,18 @@
 # Service config
 service:
-  protocol: http
   host: 127.0.0.1
   port: 3030
-  path: /api/v1/lirest/auth
+  baseUrl: /api/v1
 
 # Database configuration
-mysql:
-  host: localhost
-  port: 3306
-  username: root
-  password: '123456'
-  database: 'auth'
+mongodb:
+  uri: mongodb://localhost:27017/lirest
 
 # Swagger username and password
 api-docs:
   username: ''
   password: ''
 
-# Log config
-logLevel: debug
+# Log configuration
+log:
+  level: info

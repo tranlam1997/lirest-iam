@@ -1,7 +1,7 @@
 import express from 'express';
 import config from 'config';
 import 'reflect-metadata';
-import { requestTracingMiddleware } from './middlewares/request-tracing';
+import requestTracingMiddleware from './middlewares/request-tracing';
 import { logger } from './common/winston';
 import { createLightship } from 'lightship';
 

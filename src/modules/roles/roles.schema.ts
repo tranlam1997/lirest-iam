@@ -1,8 +1,8 @@
-import { Roles } from './interfaces/roles.interface';
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
+import { Role } from "./interfaces/roles.interface";
 
-export const RolesSchema = new mongoose.Schema<Roles>({
+export const RoleSchema = new mongoose.Schema<Role>({
   name: {
     type: String,
     required: true,
@@ -20,7 +20,7 @@ export const RolesSchema = new mongoose.Schema<Roles>({
   }]
 });
 
-RolesSchema.plugin(mongoosePaginate);
+RoleSchema.plugin(mongoosePaginate);
 
-export default mongoose.model("Roles", RolesSchema);
+export default mongoose.model("Roles", RoleSchema);
 

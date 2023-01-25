@@ -39,6 +39,10 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
       {
         name: 'Role',
         description: 'Role operations',
+      },
+      {
+        name: 'Client',
+        description: 'Client operations',
       }
     ],
   },

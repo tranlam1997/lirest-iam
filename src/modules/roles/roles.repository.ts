@@ -1,5 +1,5 @@
 import BaseRepository from '../../base/repository';
-import { Roles } from './interfaces/roles.interface';
-import RolesModel from './roles.schema';
+import { Role } from './interfaces/roles.interface';
+import RoleModel from './roles.schema';
 
-export const RolesRepository = BaseRepository<Roles>(RolesModel)
+export const RolesRepository = BaseRepository<Role>(RoleModel)

@@ -1,0 +1,40 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    Action:
+      type: object
+      properties:
+        name:
+          type: string
+          description: action name
+          example: read
+        description:
+          type: string
+          description: action description
+          example: read action
+  requestBodies:
+    CreateActionRequestBody:
+      description: action data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Action"
+  responses:
+    201CreateActionSuccess:
+      description: Create action successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Action'
+    200UpdateActionSuccess:
+      description: Update action successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true

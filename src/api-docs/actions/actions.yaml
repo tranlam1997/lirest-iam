@@ -1,0 +1,37 @@
+openapi: 3.0.0
+
+paths:
+  /api/v1/actions:
+    # Create Action
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Action
+      description: Create a action
+      operationId: CreateAction
+      summary: Create a action
+      requestBody:
+        $ref: "#/components/requestBodies/CreateActionRequestBody"
+      responses:
+        201:
+          $ref: "#/components/responses/201CreateActionSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+        502:
+          $ref: "#/components/responses/BadGatewayResponse"
+        503:
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+        504:
+          $ref: "#/components/responses/GatewayTimeoutResponse"
+

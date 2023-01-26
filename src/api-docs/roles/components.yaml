@@ -32,7 +32,7 @@ components:
               description: permission name
               example: 'read:user'
             value:
-              type: striing
+              type: string
               description: permission value
               example: 'read:user'
   requestBodies:

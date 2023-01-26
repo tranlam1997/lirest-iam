@@ -30,6 +30,10 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
         url: `http://${config.get('service.host')}:${config.get('service.port')}`,
         description: 'Lirest API Documentation',
       },
+      {
+        url: `http://localhost:${config.get('service.port')}`,
+        description: 'Lirest API Documentation',
+      }
     ],
     tags: [
       {

@@ -18,6 +18,8 @@ export const RoleSchema = new mongoose.Schema<Role>({
     name: String,
     value: String
   }]
+}, {
+  timestamps: true,
 });
 
 RoleSchema.plugin(mongoosePaginate);

@@ -8,6 +8,8 @@ export const ActionSchema = new mongoose.Schema<Action>({
     required: true,
   },
   description: String,
+}, {
+  timestamps: true,
 });
 
 ActionSchema.plugin(mongoosePaginate);

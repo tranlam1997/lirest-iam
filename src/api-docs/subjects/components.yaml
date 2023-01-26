@@ -1,0 +1,40 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    Subject:
+      type: object
+      properties:
+        name:
+          type: string
+          description: subject name
+          example: api endpoint
+        description:
+          type: string
+          description: subject description
+          example: api endpoint subject
+  requestBodies:
+    CreateSubjectRequestBody:
+      description: subject data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Subject"
+  responses:
+    201CreateSubjectSuccess:
+      description: Create subject successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Subject'
+    200UpdateSubjectSuccess:
+      description: Update subject successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true

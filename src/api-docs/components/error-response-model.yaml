@@ -13,10 +13,10 @@ components:
           type: integer
           description: Status code
           example: 400
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Bad Request Exception
     UnauthorizedException:
       type: object
       properties:
@@ -28,10 +28,10 @@ components:
           type: integer
           description: Status code
           example: 401
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Unauthorized Exception
     ForbiddenException:
       type: object
       properties:
@@ -43,10 +43,10 @@ components:
           type: integer
           description: Status code
           example: 403
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Forbidden Exception
     NotFoundException:
       type: object
       properties:
@@ -58,10 +58,10 @@ components:
           type: integer
           description: Status code
           example: 404
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Not Found Exception
     InternalServerErrorException:
       type: object
       properties:
@@ -73,10 +73,10 @@ components:
           type: integer
           description: Status code
           example: 500
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Internal Server Error Exception
     NotImplementedException:
       type: object
       properties:
@@ -88,10 +88,10 @@ components:
           type: integer
           description: Status code
           example: 501
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Not Implemented Exception
     BadGatewayException:
       type: object
       properties:
@@ -103,10 +103,10 @@ components:
           type: integer
           description: Status code
           example: 502
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Bad Gateway Exception
     ServiceUnavailableException:
       type: object
       properties:
@@ -118,10 +118,10 @@ components:
           type: integer
           description: Status code
           example: 503
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Service Unavailable Exception
     GatewayTimeoutException:
       type: object
       properties:
@@ -133,7 +133,7 @@ components:
           type: integer
           description: Status code
           example: 504
-        data:
+        error:
           type: object
-          description: response data
-          example: {}
+          description: error response
+          example: Gateway Timeout Exception

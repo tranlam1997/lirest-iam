@@ -13,28 +13,30 @@ components:
           type: string
           description: role description
           example: admin role
-        roleType:
-          type: string
-          enum: [service, app]
-          description: type of role
-          example: app
-        manageServices:
-          type: array
-          items:
-            type: string
-            description: service name
-            example: lirest-user-service
         permission:
           type: object
           properties:
-            name:
+            subject:
               type: string
-              description: permission name
-              example: 'read:user'
-            value:
+              description: subject name
+              example: user
+            action:
               type: string
-              description: permission value
-              example: 'read:user'
+              description: action name
+              example: read
+            conditions:
+              type: object
+              description: conditions
+              example: {}
+  parameters:
+    RoleId:
+      name: id
+      in: path
+      description: Role id
+      required: true
+      schema:
+        type: string
+        example: 5f9f1b9b9c9b8c0b8c8b9b9b
   requestBodies:
     CreateRoleRequestBody:
       description: Role data
@@ -43,6 +45,28 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/Role"
+    AssignPermissionsToRoleByIdRequestBody:
+      description: Permission data
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                subject:
+                  type: string
+                  description: permission name
+                  example: user
+                action:
+                  type: string
+                  description: permission value
+                  example: read
+                conditions:
+                  type: object
+                  description: permission conditions
+                  example: {}
   responses:
     201CreateRoleSuccess:
       description: Create role successfully
@@ -52,6 +76,24 @@ components:
             $ref: '#/components/schemas/User'
     200UpdateRoleSuccess:
       description: Update role successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+    200GetRolesSuccess:
+      description: Get roles successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Role'
+    200AssignPermissionsToRoleByIdSuccess:
+      description: Assign permissions to role by id successfully
       content:
         application/json:
           schema:

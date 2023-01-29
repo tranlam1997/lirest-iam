@@ -8,15 +8,10 @@ export const RoleSchema = new mongoose.Schema<Role>({
     required: true,
   },
   description: String,
-  roleType: {
-    type: String,
-    enum: ["service", "app"],
-    default: "app",
-  },
-  manageServices: [String],
   permissions: [{
-    name: String,
-    value: String
+    subject: String,
+    action: String,
+    conditions: { type: mongoose.Schema.Types.Mixed },
   }]
 }, {
   timestamps: true,

@@ -1,10 +1,9 @@
 export interface Role {
   name: string;
   description?: string;
-  roleType: string;
-  manageServices: string[];
-  permissions: {
-    name: string;
-    value: string;
+  permissions?: {
+    subject: string;
+    action: string;
+    conditions?: { [key: string]: any };
   }[];
 }

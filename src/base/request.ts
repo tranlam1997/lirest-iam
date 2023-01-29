@@ -1,5 +1,11 @@
 import { Request } from 'express';
 
 export interface BaseRequest extends Request {
-  [key: string]: any;
+  [k: string]: any;
 }
+
+export type BaseBodyRequest<T extends Record<string, any> = Record<string, any>> = Request<
+  Record<string, never>,
+  Record<string, never>,
+  T
+>;

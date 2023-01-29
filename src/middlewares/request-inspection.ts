@@ -4,7 +4,7 @@ import { NextFunction } from 'express';
 import { BaseResponse } from '@src/base/response';
 import requestIp from 'request-ip';
 
-const RequestLogger = logger('RequestInspection');
+const RequestLogger = logger('Request-Inspection');
 // log essentail info about the request
 export default function requestInspectionMiddleware(req: BaseRequest, _res: BaseResponse, next: NextFunction) {
   RequestLogger.info(`Request received:

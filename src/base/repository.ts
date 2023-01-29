@@ -1,22 +1,54 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { NotFoundException } from '@src/errors/exceptions/not-found-exception';
 import { Model } from 'mongoose';
 
-export default function BaseRepository<T extends object>(model: Model<T>): any {
+type BaseRepositoryResult<T> = {
+  create(doc: any): Promise<T>;
+  createOrUpdate(doc: any): Promise<T>;
+  findById(id: string, options?: any, populates?: string[]): Promise<T>;
+  findOne(
+    params?: { [key: string]: any },
+    options?: { [key: string]: any },
+    populates?: string[],
+  ): Promise<T>;
+  findAll(
+    params?: { [key: string]: any },
+    options?: { [key: string]: any },
+    limit?: number,
+    sort?: { [key: string]: any },
+  ): Promise<T[]>;
+  find(
+    params?: { [key: string]: any },
+    options?: { [key: string]: any },
+    populates?: string[],
+    sort?: { [key: string]: any },
+  ): Promise<T[]>;
+  getModel(): Model<T>;
+  removeAll(): Promise<any>;
+  removeById(id: string): Promise<any>;
+  updateById(id: string, doc: any, options?: any): Promise<any>;
+  updateOne(conditions: any, doc: any, options?: any): Promise<any>;
+  updateMany(conditions: any, doc: any, options?: any): Promise<any>;
+  insertMany(docs: any[]): Promise<any>;
+  countDocs(filter?: any): Promise<number>;
+};
+
+export default function BaseRepository<T extends object>(model: Model<T>): BaseRepositoryResult<T> {
   const primaryKey = '_id';
   return {
-    async create(data: any): Promise<T> {
-      return new model(data).save();
+    async create(doc: any): Promise<T> {
+      return new model(doc).save();
     },
 
-    async createOrUpdate(entity: any): Promise<T> {
+    async createOrUpdate(doc: any): Promise<T> {
       let document: any = await model.findOne({
-        [primaryKey]: entity[primaryKey],
+        [primaryKey]: doc[primaryKey],
       });
 
       if (document === null) {
-        document = await new model(entity).save();
+        document = await new model(doc).save();
       } else {
-        await document.set(entity).save();
+        await document.set(doc).save();
       }
 
       return document;
@@ -76,13 +108,13 @@ export default function BaseRepository<T extends object>(model: Model<T>): any {
     },
 
     async findAll(
-      filter: any = {},
+      params: any = {},
       options: any = {},
       limit = 0,
       sort: { [key: string]: any } = {},
     ): Promise<Array<T>> {
       const query = model
-        .find(filter, null, { ...options, lean: true })
+        .find(params, null, { ...options, lean: true })
         .limit(limit)
         .sort(sort);
       return query.exec();
@@ -100,7 +132,7 @@ export default function BaseRepository<T extends object>(model: Model<T>): any {
       return model.findByIdAndDelete(id).exec();
     },
 
-    async updateById(id: any, doc: any, options?: any) {
+    async updateById(id: string, doc: any, options?: any) {
       return model.updateOne({ [primaryKey]: id }, doc, options);
     },
 
@@ -116,7 +148,7 @@ export default function BaseRepository<T extends object>(model: Model<T>): any {
       return model.insertMany(doc);
     },
 
-    async count(filter: any = {}) {
+    async countDocs(filter: any = {}) {
       return model.countDocuments(filter);
     },
   };

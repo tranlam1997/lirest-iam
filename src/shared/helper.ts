@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 export const isObject = (obj: any): obj is Record<string, any> => {
   return obj !== null && typeof obj === 'object';
 };
@@ -23,4 +25,8 @@ export const asyncHandler = (...fn: any[]): any => {
 
 export function convertNanosecondsToMilliseconds(nanoSeconds: number): number {
   return nanoSeconds / 1000000;
+}
+
+export function comparePassword(password: string, hash: string): boolean {
+  return bcrypt.compareSync(password, hash);
 }

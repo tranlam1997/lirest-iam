@@ -16,3 +16,10 @@ api-docs:
 # Log configuration
 log:
   level: LOG_LEVEL
+
+# JWT configuration
+jwt:
+  accessTokenKey: ACCESS_TOKEN_KEY
+  refreshTokenKey: REFRESH_TOKEN_KEY
+  accessTokenExpiresIn: ACCESS_TOKEN_EXPIRES_IN
+  refreshTokenExpiresIn: REFRESH_TOKEN_EXPIRES_IN

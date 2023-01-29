@@ -16,3 +16,10 @@ api-docs:
 # Log configuration
 log:
   level: info
+
+# JWT config
+jwt:
+  accessTokenKey: Yp3s6v8y/B?E(H+MbQeThWmZq4t7w!z$
+  refreshTokenKey: gUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w
+  accessTokenExpiresIn: 1h
+  refreshTokenExpiresIn: 1d

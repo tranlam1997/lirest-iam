@@ -1,0 +1,94 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    LoginData:
+      type: object
+      properties:
+        username:
+          type: string
+          description: username of user
+          example: username
+        emaii:
+          type: string
+          description: email of user
+          example: email
+        password:
+          type: string
+          description: password of user
+          example: password
+    LoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: access token
+          example: 0cYixCUvDs
+        refreshToken:
+          type: string
+          description: refresh token
+          example: 0cYixCUvDs
+    RegisterData:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: first name of user
+          example: firstName
+        lastName:
+          type: string
+          description: last name of user
+          example: lastName
+        dateOfBirth:
+          type: string
+          description: date of birth of user
+          example: 1999-12-31
+        phoneNumber:
+          type: string
+          description: phone number of user
+          example: 0123456789
+        username:
+          type: string
+          description: username of user
+          example: username
+        email:
+          type: string
+          description: email of user
+          example: email
+        password:
+          type: string
+          description: password of user
+          example: password
+  requestBodies:
+    LoginRequestBody:
+      description: Login data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/LoginData"
+    RegisterRequestBody:
+      description: Register data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/RegisterData"
+  responses:
+    200LoginSuccess:
+      description: Login successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LoginResponse'
+    201RegisterSuccess:
+      description: Register successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: success or fail
+                example: true

@@ -51,6 +51,14 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
       {
         name: 'Action',
         description: 'Action operations',
+      },
+      {
+        name: 'Subject',
+        description: 'Subject operations',
+      },
+      {
+        name: 'Auth',
+        description: 'Auth operations',
       }
     ],
   },

@@ -38,3 +38,11 @@ components:
               success:
                 type: boolean
                 example: true
+    200GetAllSubjectsSuccess:
+      description: Get all subjects successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Subject'

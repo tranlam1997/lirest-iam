@@ -34,4 +34,28 @@ paths:
           $ref: "#/components/responses/ServiceUnavailableResponse"
         504:
           $ref: "#/components/responses/GatewayTimeoutResponse"
+    # Get all subjects
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Subject
+      description: Get all subjects
+      operationId: GetAllSubjects
+      summary: Get all subjects
+      responses:
+        200:
+          $ref: "#/components/responses/200GetAllSubjectsSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
 

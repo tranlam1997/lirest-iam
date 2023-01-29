@@ -5,6 +5,7 @@ import mongoosePaginate from "mongoose-paginate-v2";
 export const SubjectSchema = new mongoose.Schema<Subject>({
   name: {
     type: String,
+    unique: true,
     required: true,
   },
   description: String,

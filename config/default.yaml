@@ -2,7 +2,7 @@
 service:
   host: 127.0.0.1
   port: 3030
-  baseUrl: /api/v1
+  baseUrl: /api/v1/iam
 
 # Database configuration
 mongodb:

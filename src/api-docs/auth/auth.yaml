@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 paths:
-  /api/v1/auth/login:
+  /api/v1/iam/auth/login:
     # Login
     post:
       security:
@@ -34,7 +34,7 @@ paths:
           $ref: "#/components/responses/ServiceUnavailableResponse"
         504:
           $ref: "#/components/responses/GatewayTimeoutResponse"
-  /api/v1/auth/register:
+  /api/v1/iam/auth/register:
     # Register
     post:
       security:

@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 paths:
-  /api/v1/roles:
+  /api/v1/iam/roles:
     # Create role
     post:
       security:
@@ -163,7 +163,7 @@ paths:
   #         $ref: "#/components/responses/ServiceUnavailableResponse"
   #       504:
   #         $ref: "#/components/responses/GatewayTimeoutResponse"
-  /api/v1/roles/{id}/permissions:
+  /api/v1/iam/roles/{id}/permissions:
     # Assign permissions to role by id
     post:
       security:

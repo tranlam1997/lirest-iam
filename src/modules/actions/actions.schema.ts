@@ -14,5 +14,5 @@ export const ActionSchema = new mongoose.Schema<Action>({
 
 ActionSchema.plugin(mongoosePaginate);
 
-export default mongoose.model("Actions", ActionSchema);
+export default mongoose.models.Actions || mongoose.model("Actions", ActionSchema);
 

@@ -19,5 +19,5 @@ export const RoleSchema = new mongoose.Schema<Role>({
 
 RoleSchema.plugin(mongoosePaginate);
 
-export default mongoose.model("Roles", RoleSchema);
+export default mongoose.models.Roles || mongoose.model("Roles", RoleSchema);
 

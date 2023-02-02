@@ -56,4 +56,4 @@ UserSchema.pre("save", function(next) {
 })
 UserSchema.plugin(mongoosePaginate);
 
-export default mongoose.model("Users", UserSchema);
+export default mongoose.models.Users || mongoose.model("Users", UserSchema);

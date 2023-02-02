@@ -15,4 +15,4 @@ export const SubjectSchema = new mongoose.Schema<Subject>({
 
 SubjectSchema.plugin(mongoosePaginate);
 
-export default mongoose.model("Subjects", SubjectSchema);
+export default mongoose.models.Subjects || mongoose.model("Subjects", SubjectSchema);

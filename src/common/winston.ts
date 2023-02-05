@@ -57,8 +57,10 @@ const baseLoggerConfig = {
   exitOnError: false,
 } as winston.LoggerOptions;
 
+const winstonLogger = winston.createLogger(baseLoggerConfig);
+
 export const logger = (serviceName: string) => {
-  return winston.createLogger(baseLoggerConfig).child({ serviceName });
+  return winstonLogger.child({ serviceName });
 };
 
 export const expressLogger = expressWinston.logger({

@@ -1,6 +1,8 @@
 import { SubjectsRepository } from './subjects.repository';
 import { Subject } from './interfaces/subjects.interface';
 import { BadRequestException } from '../../errors/exceptions/bad-request-exception';
+import serviceRegistriesClient from '@src/communication/service-registries.client';
+import { GetAllServiceRegistriesResponse, ServiceError } from '@tranlam1997/lirest-internal-communication-service';
 
 export const SubjectsService = {
   async createSubject(subject: Subject) {
@@ -18,6 +20,14 @@ export const SubjectsService = {
 
   async getAllSubjects() {
     const subjects = await SubjectsRepository.findAll();
+    serviceRegistriesClient.getAllServiceRegistries({}, (err: ServiceError | null, res: GetAllServiceRegistriesResponse) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+          console.log(res);
+      });
+
     return subjects;
   }
 };

@@ -23,3 +23,13 @@ jwt:
   refreshTokenKey: REFRESH_TOKEN_KEY
   accessTokenExpiresIn: ACCESS_TOKEN_EXPIRES_IN
   refreshTokenExpiresIn: REFRESH_TOKEN_EXPIRES_IN
+
+# Kafka configuration
+kafka:
+  clientId: KAFKA_CLIENT_ID
+  groupId: KAFKA_GROUP_ID
+  serverUrl: KAFKA_SERVER_URL
+  sasl:
+    username: KAFKA_SASL_USERNAME
+    password: KAFKA_SASL_PASSWORD
+  enabled: KAFKA_ENABLED

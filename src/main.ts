@@ -4,6 +4,7 @@ import 'reflect-metadata';
 import requestTracingMiddleware from './middlewares/request-tracing';
 import { logger } from './common/winston';
 import { createLightship } from 'lightship';
+import './shared/global/variables';
 
 (async () => {
   const app: express.Application = express();
@@ -23,7 +24,6 @@ import { createLightship } from 'lightship';
     logger('Main').error('Unable to start server');
     lightship.shutdown();
   });
-
 
   lightship.registerShutdownHandler(() => {
     server.close();

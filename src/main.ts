@@ -5,6 +5,7 @@ import requestTracingMiddleware from './middlewares/request-tracing';
 import { logger } from './common/winston';
 import { createLightship } from 'lightship';
 import './shared/global/variables';
+import gracefulShutdown from './shared/event-handler';
 
 (async () => {
   const app: express.Application = express();
@@ -16,14 +17,16 @@ import './shared/global/variables';
   const lightship = await createLightship();
 
   const server = app.listen(process.env.PORT || port, () => {
-    logger('Main').info(
+    logger('main').info(
       `Service running at https://${config.get('service.host')}:${process.env.PORT || port}`,
       lightship.isServerReady()
     );
   }).on('error', () => {
-    logger('Main').error('Unable to start server');
+    logger('main').error('Unable to start server');
     lightship.shutdown();
   });
+
+  gracefulShutdown();
 
   lightship.registerShutdownHandler(() => {
     server.close();

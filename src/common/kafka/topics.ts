@@ -5,3 +5,7 @@ export enum KafkaTopics {
 export enum TopicDestinations {
   USER_SERVICE = 'lirest-user-service',
 }
+
+export enum Transactions {
+  USER_REGISTER = 'lirest.iam.producer.register.json.transaction',
+}

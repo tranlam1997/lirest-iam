@@ -6,6 +6,7 @@ import { ResultResponse } from '../../shared/response-format';
 const SubjectsRouter = Router();
 
 export default (app: Router) => {
+  // Create subject
   SubjectsRouter.route('/')
     .post(
       asyncHandler(async (req: Request, res: Response) => {
@@ -17,6 +18,7 @@ export default (app: Router) => {
         });
       }),
     )
+    // Get all subjects
     .get(
       asyncHandler(async (_req: Request, res: Response) => {
         const subjects = await SubjectsService.getAllSubjects();

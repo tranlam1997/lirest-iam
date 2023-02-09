@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@casl/ability": "^6.3.3",
-    "@tranlam1997/lirest-event-pub-sub": "^0.1.4",
+    "@tranlam1997/lirest-event-pub-sub": "^0.1.13",
     "@tranlam1997/lirest-internal-communication-service": "0.2.12",
     "bcryptjs": "^2.4.3",
     "cls-hooked": "^4.2.2",

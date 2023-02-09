@@ -1,7 +1,7 @@
-import { LirestKafkaConfig } from '@tranlam1997/lirest-event-pub-sub';
+import { KafkaConfig } from '@tranlam1997/lirest-event-pub-sub';
 import config from 'config';
 
-export const kafkaConfig: LirestKafkaConfig = {
+export const kafkaConfig: KafkaConfig = {
   serverUrl: config.get<string>('kafka.serverUrl'),
   clientId: config.get<string>('kafka.clientId'),
   sasl: {

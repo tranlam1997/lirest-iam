@@ -5,30 +5,41 @@ import { BadRequestException } from '../../errors/exceptions/bad-request-excepti
 import jwt from 'jsonwebtoken';
 import config from 'config';
 import { randomUUID } from 'crypto';
-import { KafkaTopics, TopicDestinations } from '@src/common/kafka/topics.enum';
+import { KafkaTopics, TopicDestinations } from '@src/common/kafka/topics';
 import { logger } from '@src/common/winston';
-import iamKafka from '@src/common/kafka/producer';
+import kafkaProducer from '@src/common/kafka/producer';
 
 const AuthLogger = logger('auth-service');
 
 export const AuthService = {
   async register(data: User) {
-    await iamKafka.producer.send({
-      topic: KafkaTopics.USER_REGISTER,
-      messages: [
-        {
-          value: JSON.stringify(data),
-          headers: {
-            messageId: randomUUID(),
-            topic: KafkaTopics.USER_REGISTER,
-            origin: serviceName,
-            destination: TopicDestinations.USER_SERVICE,
-          }
-        },
-      ],
-    });
-    AuthLogger.info('Message sent to Kafka: ', JSON.stringify(data));
-    return { success: true };
+    const transaction = await kafkaProducer.transaction()
+    try {
+      AuthLogger.info(`Sending message to Kafka: ${JSON.stringify(data)}`)
+      await transaction.send({
+        topic: KafkaTopics.USER_REGISTER,
+        messages: [
+          {
+            value: JSON.stringify(data),
+            headers: {
+              messageId: randomUUID(),
+              topic: KafkaTopics.USER_REGISTER,
+              origin: serviceName,
+              destination: TopicDestinations.USER_SERVICE,
+            }
+          },
+        ],
+      });
+      await transaction.commit();
+      await kafkaProducer.disconnect();
+      AuthLogger.info('Message sent to Kafka');
+      return { success: true };
+    } catch (err) {
+      await transaction.abort();
+      AuthLogger.error('Error sending message to Kafka: ', JSON.stringify(err));
+      throw new BadRequestException({ message: 'Something went wrong', error: err });
+    }
+
   },
 
   async login({ username = null, email = null, password }: LoginData) {

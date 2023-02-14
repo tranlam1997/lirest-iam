@@ -1,4 +1,3 @@
-import { BaseBodyRequest } from '../../../base/request';
 export interface User {
   firstName: string;
   lastName: string;
@@ -8,15 +7,5 @@ export interface User {
   username: string;
   password: string;
   emailVerified?: boolean;
-  role: any;
+  subjectId: string;
 }
-
-export interface LoginData {
-  username: string | null;
-  email: string | null;
-  password: string;
-}
-
-export type LoginRequestBody = BaseBodyRequest<LoginData>
-
-export type RegisterRequestBody = BaseBodyRequest<User>

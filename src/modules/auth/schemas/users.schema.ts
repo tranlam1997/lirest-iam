@@ -33,10 +33,10 @@ export const UserSchema = new mongoose.Schema<User>({
     type: Boolean,
     default: false,
   },
-  role: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Roles",
-  }
+  subjectId: {
+    type: String,
+    required: true,
+  },
 }, {
   timestamps: true,
 });

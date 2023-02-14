@@ -22,10 +22,12 @@ export const PolicyTargetSchema = new mongoose.Schema<PolicyTarget>({
 export const PolicySchema = new mongoose.Schema<Policy>({
   policyId: {
     type: String,
+    unique: true,
     required: true,
   },
   name: {
     type: String,
+    unique: true,
     required: true,
   },
   description: String,

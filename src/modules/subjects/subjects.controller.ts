@@ -2,14 +2,15 @@ import { asyncHandler } from '../../shared/helper';
 import { Request, Response, Router } from 'express';
 import { SubjectsService } from './subjects.service';
 import { ResultResponse } from '../../shared/response-format';
+import { CreateSubjectRequestDTO } from './dto/subjects.dto';
 
 const SubjectsRouter = Router();
 
 export default (app: Router) => {
-  // Create subject
+  // Create new subject
   SubjectsRouter.route('/')
     .post(
-      asyncHandler(async (req: Request, res: Response) => {
+      asyncHandler(async (req: CreateSubjectRequestDTO, res: Response) => {
         const subject = await SubjectsService.createSubject(req.body);
         return ResultResponse.info(res, {
           response: {

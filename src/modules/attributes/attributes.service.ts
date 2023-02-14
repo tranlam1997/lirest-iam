@@ -1,14 +1,14 @@
-import { ActionsRepository } from './attributes.repository';
-import { Action } from './interfaces/attributes.interface';
+import { AttributesRepository } from './attributes.repository';
+import { Attribute } from './interfaces/attributes.interface';
 
-export const ActionsService = {
-  async createAction(action: Action) {
-    const newClient = await ActionsRepository.create(action);
+export const AttributesService = {
+  async createAttribute(attribute: Attribute) {
+    const newClient = await AttributesRepository.create(attribute);
     return newClient;
   },
 
-  async getAllActions() {
-    const actions = await ActionsRepository.findAll();
-    return actions;
+  async getAllAttributes() {
+    const attributes = await AttributesRepository.findAll();
+    return attributes;
   }
 };

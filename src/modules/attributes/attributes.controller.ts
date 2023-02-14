@@ -1,14 +1,30 @@
 import { asyncHandler } from '../../shared/helper';
 import { Request, Response, Router } from 'express';
-import { ActionsService } from './attributes.service';
+import { AttributesService } from './attributes.service';
+import { CreateAttributeRequestDTO } from './dto/attributes.dto';
 
-const ActionsRouter = Router();
+const AttributesRouter = Router();
 
 export default (app: Router) => {
-  ActionsRouter.post('/', asyncHandler(async (req: Request, res: Response) => {
-    const role = await ActionsService.createAction(req.body);
-    return res.status(201).json(role);
-  }))
+  AttributesRouter.route('/')
+    /**
+     * Create new attribute
+     */
+    .post(
+      asyncHandler(async (req: CreateAttributeRequestDTO, res: Response) => {
+        const role = await AttributesService.createAttribute(req.body);
+        return res.status(201).json(role);
+      }),
+    )
+    /**
+     * Get all attributes
+     */
+    .get(
+      asyncHandler(async (_req: Request, res: Response) => {
+        const attributes = await AttributesService.getAllAttributes();
+        return res.status(200).json(attributes);
+      }),
+    );
 
-  app.use('/actions', ActionsRouter);
+  app.use('/actions', AttributesRouter);
 };

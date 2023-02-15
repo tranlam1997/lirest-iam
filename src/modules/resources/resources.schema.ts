@@ -32,4 +32,4 @@ export const ResourceSchema = new mongoose.Schema<Resource>({
 
 ResourceSchema.plugin(mongoosePaginate);
 
-export default mongoose.models.Actions || mongoose.model("Resources", ResourceSchema);
+export default mongoose.models.Resources || mongoose.model("Resources", ResourceSchema);

@@ -46,5 +46,5 @@ export const PolicySchema = new mongoose.Schema<Policy>({
 
 PolicySchema.plugin(mongoosePaginate);
 
-export default mongoose.models.Actions || mongoose.model("Policies", PolicySchema);
+export default mongoose.models.Policies || mongoose.model("Policies", PolicySchema);
 

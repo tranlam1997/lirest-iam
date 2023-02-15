@@ -9,7 +9,9 @@ export const AttributeSchema = new mongoose.Schema<Attribute>({
     required: true,
   },
   type: {
-    type: AttributeType
+    type: String,
+    enum: AttributeType,
+    required: true,
   },
   value: {
     type: String,
@@ -23,5 +25,5 @@ export const AttributeSchema = new mongoose.Schema<Attribute>({
 
 AttributeSchema.plugin(mongoosePaginate);
 
-export default mongoose.models.Actions || mongoose.model("Attributes", AttributeSchema);
+export default mongoose.models.Attributes || mongoose.model("Attributes", AttributeSchema);
 

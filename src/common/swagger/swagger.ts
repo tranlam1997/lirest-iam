@@ -34,33 +34,7 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
         url: `http://localhost:${config.get('service.port')}`,
         description: 'Lirest API Documentation',
       }
-    ],
-    tags: [
-      {
-        name: 'Ping',
-        description: 'Test service connection',
-      },
-      {
-        name: 'Role',
-        description: 'Role operations',
-      },
-      {
-        name: 'Client',
-        description: 'Client operations',
-      },
-      {
-        name: 'Action',
-        description: 'Action operations',
-      },
-      {
-        name: 'Subject',
-        description: 'Subject operations',
-      },
-      {
-        name: 'Auth',
-        description: 'Auth operations',
-      }
-    ],
+    ]
   },
   apis: ['./src/api-docs/**/*.yaml'],
 };

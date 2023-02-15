@@ -5,6 +5,10 @@ components:
     Action:
       type: object
       properties:
+        actionId:
+          type: string
+          description: action id
+          example: q9mjc8li77
         name:
           type: string
           description: action name

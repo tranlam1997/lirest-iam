@@ -5,10 +5,18 @@ components:
     Subject:
       type: object
       properties:
+        subjectId:
+          type: string
+          description: subject id
+          example: q9mjc8li77
         name:
           type: string
           description: subject name
-          example: api endpoint
+          example: admin
+        type:
+          type: string
+          description: subject type
+          example: user, group, role
         description:
           type: string
           description: subject description

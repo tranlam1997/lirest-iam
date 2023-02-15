@@ -1,0 +1,89 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    Resource:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: resource id
+          example: q9mjc8li77
+        name:
+          type: string
+          description: subject name
+          example: api endpoint
+        description:
+          type: string
+          description: subject description
+          example: api endpoint subject
+        type:
+          type: string
+          description: resource type
+          example: api
+        action:
+          type: array
+          items:
+            type: string
+          description: action on resource
+          example: [create, read, update, delete]
+        owner:
+          type: string
+          description: owner of this resource
+          example: q9mjc8li77
+        accessCount:
+          type: number
+          description: access count of this resource
+          example: 0
+        accessControlList:
+          type: array
+          items:
+            type: object
+            properties:
+              subjectId:
+                type: string
+                description: subject id
+                example: q9mjc8li77
+              permissionId:
+                type: array
+                items:
+                  type: string
+                description: permission id
+                example: [q9mjc8li77, q9mjc8li77]
+        deprecated:
+          type: boolean
+          description: is this resource deprecated
+          example: false
+  requestBodies:
+    CreateResourceRequestBody:
+      description: resource data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Resource"
+  responses:
+    201CreateResourceSuccess:
+      description: Create resource successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Resource'
+    # 200UpdateResourceSuccess:
+    #   description: Update resource successfully
+    #   content:
+    #     application/json:
+    #       schema:
+    #         type: object
+    #         properties:
+    #           success:
+    #             type: boolean
+    #             example: true
+    200GetAllResourcesSuccess:
+      description: Get all resources successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Resource'

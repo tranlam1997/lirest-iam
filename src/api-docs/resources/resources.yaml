@@ -1,0 +1,61 @@
+openapi: 3.0.0
+
+paths:
+  /api/v1/iam/resources:
+    # Create Resource
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Resource
+      description: Create a resource
+      operationId: CreateResource
+      summary: Create a resource
+      requestBody:
+        $ref: "#/components/requestBodies/CreateResourceRequestBody"
+      responses:
+        201:
+          $ref: "#/components/responses/201CreateResourceSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+        502:
+          $ref: "#/components/responses/BadGatewayResponse"
+        503:
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+        504:
+          $ref: "#/components/responses/GatewayTimeoutResponse"
+    # Get all resources
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Resource
+      description: Get all resources
+      operationId: GetAllResources
+      summary: Get all resources
+      responses:
+        200:
+          $ref: "#/components/responses/200GetAllResourcesSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+

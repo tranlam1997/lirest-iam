@@ -1,0 +1,61 @@
+openapi: 3.0.0
+
+paths:
+  /api/v1/iam/attributes:
+    # Create Attribute
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Attribute
+      description: Create a attribute
+      operationId: CreateAttribute
+      summary: Create a attribute
+      requestBody:
+        $ref: "#/components/requestBodies/CreateAttributeRequestBody"
+      responses:
+        201:
+          $ref: "#/components/responses/201CreateAttributeSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+        502:
+          $ref: "#/components/responses/BadGatewayResponse"
+        503:
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+        504:
+          $ref: "#/components/responses/GatewayTimeoutResponse"
+    # Get all attributes
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Attribute
+      description: Get all attributes
+      operationId: GetAllAttributes
+      summary: Get all attributes
+      responses:
+        200:
+          $ref: "#/components/responses/200GetAllAttributesSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+

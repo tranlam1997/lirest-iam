@@ -1,0 +1,50 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    Attribute:
+      type: object
+      properties:
+        name:
+          type: string
+          description: attribute name
+          example: role
+        type:
+          type: string
+          description: attribute description
+          example: string, number, boolean, object,...
+        value:
+          type: string
+          description: value of attribute
+          example: admin
+        subjectId:
+          type: string
+          description: subject id
+          example: abkdh12kl3
+        resourceId:
+          type: string
+          description: resource id
+          example: abkdh12kl3
+  requestBodies:
+    CreateAttributeRequestBody:
+      description: attribute data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Attribute"
+  responses:
+    201CreateAttributeSuccess:
+      description: Create attribute successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Attribute'
+    200GetAllAttributesSuccess:
+      description: Get all subjects successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Attribute'

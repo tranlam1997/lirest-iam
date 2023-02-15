@@ -1,0 +1,72 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    Permission:
+      type: object
+      properties:
+        permissionsId:
+          type: string
+          description: permission id
+          example: q9mjc8li77
+        subjectId:
+          type: string
+          description: subject id
+          example: q9mjc8li77
+        resourceId:
+          type: string
+          description: resource id
+          example: q9mjc8li77
+        action:
+          type: string
+          description: action on resource
+          example: create
+        effect:
+          type: string
+          description: is this permission valid
+          example: allow, deny
+        condition:
+           type: object
+           description: condition for this permission
+           properties:
+             attribute:
+               type: string
+               description: attribute of condition
+               example: key
+             value:
+               type: string
+               description: value of condition
+               example: value
+  requestBodies:
+    CreatePermissionRequestBody:
+      description: permission data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Permission"
+  responses:
+    201CreatePermissionSuccess:
+      description: Create permission successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Permission'
+    200UpdatePermissionSuccess:
+      description: Update permission successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+    200GetAllPermissionsSuccess:
+      description: Get all permissions successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Permission'

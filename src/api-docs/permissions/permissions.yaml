@@ -1,0 +1,61 @@
+openapi: 3.0.0
+
+paths:
+  /api/v1/iam/permissions:
+    # Create Permission
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Permission
+      description: Create a permission
+      operationId: CreatePermission
+      summary: Create a permission
+      requestBody:
+        $ref: "#/components/requestBodies/CreatePermissionRequestBody"
+      responses:
+        201:
+          $ref: "#/components/responses/201CreatePermissionSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+        502:
+          $ref: "#/components/responses/BadGatewayResponse"
+        503:
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+        504:
+          $ref: "#/components/responses/GatewayTimeoutResponse"
+    # Get all permissions
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Permission
+      description: Get all permissions
+      operationId: GetAllPermissions
+      summary: Get all permissions
+      responses:
+        200:
+          $ref: "#/components/responses/200GetAllPermissionsSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+

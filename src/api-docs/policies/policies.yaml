@@ -1,0 +1,61 @@
+openapi: 3.0.0
+
+paths:
+  /api/v1/iam/policies:
+    # Create Policy
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Policy
+      description: Create a policy
+      operationId: CreatePolicy
+      summary: Create a policy
+      requestBody:
+        $ref: "#/components/requestBodies/CreatePolicyRequestBody"
+      responses:
+        201:
+          $ref: "#/components/responses/201CreatePolicySuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+        502:
+          $ref: "#/components/responses/BadGatewayResponse"
+        503:
+          $ref: "#/components/responses/ServiceUnavailableResponse"
+        504:
+          $ref: "#/components/responses/GatewayTimeoutResponse"
+    # Get all policies
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Policy
+      description: Get all policies
+      operationId: GetAllPolicies
+      summary: Get all policies
+      responses:
+        200:
+          $ref: "#/components/responses/200GetAllPoliciesSuccess"
+        400:
+          $ref: "#/components/responses/BadRequestResponse"
+        401:
+          $ref: "#/components/responses/UnauthorizedResponse"
+        403:
+          $ref: "#/components/responses/ForbiddenResponse"
+        404:
+          $ref: "#/components/responses/NotFoundResponse"
+        500:
+          $ref: "#/components/responses/InternalServerErrorResponse"
+        501:
+          $ref: "#/components/responses/NotImplementedResponse"
+

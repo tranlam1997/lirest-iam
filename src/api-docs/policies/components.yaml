@@ -1,0 +1,76 @@
+openapi: 3.0.0
+
+components:
+  schemas:
+    Policy:
+      type: object
+      properties:
+        policyId:
+          type: string
+          description: policy id
+          example: q9mjc8li77
+        name:
+          type: string
+          description: subject name
+          example: api endpoint
+        description:
+          type: string
+          description: subject description
+          example: api endpoint subject
+        effect:
+          type: string
+          description: is this policy valid
+          example: allow, deny
+        target:
+          type: object
+          description: target of this policy
+          properties:
+            subjectId:
+              type: string
+              description: subject id
+              example: q9mjc8li77
+            resourceId:
+              type: string
+              description: resource id
+              example: q9mjc8li77
+            action:
+              type: string
+              description: action on resource
+              example: create
+        rule:
+          type: string
+          description: rule of this policy
+          example: any, all
+  requestBodies:
+    CreatePolicyRequestBody:
+      description: subject data
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Policy"
+  responses:
+    201CreatePolicySuccess:
+      description: Create policy successfully
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Policy'
+    # 200UpdatePolicySuccess:
+    #   description: Update subject successfully
+    #   content:
+    #     application/json:
+    #       schema:
+    #         type: object
+    #         properties:
+    #           success:
+    #             type: boolean
+    #             example: true
+    200GetAllPoliciesSuccess:
+      description: Get all policies successfully
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Policy'

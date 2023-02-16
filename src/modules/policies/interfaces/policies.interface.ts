@@ -1,7 +1,8 @@
+import { ActionType } from '../../actions/constants/actions.constant';
 export interface PolicyTarget {
   subjectId: string;
   resourceId: string;
-  action: string;
+  action: typeof ActionType[keyof typeof ActionType];
 }
 
 export interface Policy {

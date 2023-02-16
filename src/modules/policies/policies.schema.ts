@@ -1,6 +1,7 @@
 import { Policy, PolicyTarget } from './interfaces/policies.interface';
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
+import { ActionType } from '../actions/constants/actions.constant';
 
 export const PolicyTargetSchema = new mongoose.Schema<PolicyTarget>({
   subjectId: {
@@ -13,6 +14,7 @@ export const PolicyTargetSchema = new mongoose.Schema<PolicyTarget>({
   },
   action: {
     type: String,
+    enum: Object.values(ActionType),
     required: true,
   },
 }, {

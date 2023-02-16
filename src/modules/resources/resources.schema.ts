@@ -1,6 +1,7 @@
 import { Resource } from './interfaces/resources.interface';
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
+import { ActionType } from '../actions/constants/actions.constant';
 
 export const ResourceSchema = new mongoose.Schema<Resource>({
   resourceId: {
@@ -18,7 +19,12 @@ export const ResourceSchema = new mongoose.Schema<Resource>({
     type: String,
     required: true,
   },
-  action: [String],
+  actions: {
+    type: [String],
+    enum: Object.values(ActionType),
+    required: true,
+
+  },
   owner: String,
   accessCount: Number,
   accessControlList: [{

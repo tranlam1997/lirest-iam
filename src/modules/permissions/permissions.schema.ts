@@ -1,6 +1,7 @@
 import { Permission, PermissionCondition } from './interfaces/permissions.interface';
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
+import { ActionType } from '../actions/constants/actions.constant';
 
 export const PermissionConditionSchema = new mongoose.Schema<PermissionCondition>({
   attribute: {
@@ -31,6 +32,7 @@ export const PermissionSchema = new mongoose.Schema<Permission>({
   },
   action: {
     type: String,
+    enum: Object.values(ActionType),
     required: true,
   },
   effect: {

@@ -1,5 +1,5 @@
 import { comparePassword } from '@src/shared/helper';
-import { LoginData, User } from './interfaces/users.interface';
+import { User } from './interfaces/users.interface';
 import { UsersRepository } from './repositories/users.repository';
 import { BadRequestException } from '../../errors/exceptions/bad-request-exception';
 import jwt from 'jsonwebtoken';
@@ -8,6 +8,7 @@ import { randomUUID } from 'crypto';
 import { KafkaTopics, TopicDestinations } from '@src/common/kafka/topics';
 import { logger } from '@src/common/winston';
 import kafkaProducer from '@src/common/kafka/producer';
+import { LoginData } from './dto/users.dto';
 
 const AuthLogger = logger('auth-service');
 

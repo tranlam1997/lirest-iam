@@ -21,7 +21,7 @@ components:
           type: string
           description: resource type
           example: api
-        action:
+        actions:
           type: array
           items:
             type: string

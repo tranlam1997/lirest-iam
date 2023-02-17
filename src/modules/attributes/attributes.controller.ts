@@ -26,5 +26,5 @@ export default (app: Router) => {
       }),
     );
 
-  app.use('/actions', AttributesRouter);
+  app.use('/attributes', AttributesRouter);
 };

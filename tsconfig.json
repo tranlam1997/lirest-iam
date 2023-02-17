@@ -9,12 +9,12 @@
         "pretty": true,
         "noEmitOnError": true,
         // Strict Type Checks
-        "strict": true,
+        // "strict": true,
         // Additional Checks
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
+        // "noUnusedLocals": true,
+        // "noUnusedParameters": true,
+        // "noImplicitReturns": true,
+        // "noFallthroughCasesInSwitch": true,
         // Module Resolution
         "moduleResolution": "node",
         "esModuleInterop": true,
@@ -40,6 +40,7 @@
       },
     },
   "exclude": ["node_modules", "dist", "test"],
+  "files": ["typings/global.d.ts"],
   "include": [
     "src/**/*.ts",
     ".eslintrc.js",

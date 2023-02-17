@@ -5,7 +5,7 @@ components:
     Permission:
       type: object
       properties:
-        permissionsId:
+        permissionId:
           type: string
           description: permission id
           example: q9mjc8li77
@@ -25,18 +25,9 @@ components:
           type: string
           description: is this permission valid
           example: allow, deny
-        condition:
+        conditions:
            type: object
            description: condition for this permission
-           properties:
-             attribute:
-               type: string
-               description: attribute of condition
-               example: key
-             value:
-               type: string
-               description: value of condition
-               example: value
   requestBodies:
     CreatePermissionRequestBody:
       description: permission data

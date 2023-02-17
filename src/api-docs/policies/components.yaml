@@ -25,16 +25,16 @@ components:
           type: object
           description: target of this policy
           properties:
-            subjectId:
-              type: string
-              description: subject id
-              example: q9mjc8li77
-            resourceId:
-              type: string
-              description: resource id
-              example: q9mjc8li77
-            action:
-              type: string
+            subjectAttributes:
+              type: object
+              description: subject attributes
+            resourceAttributes:
+              type: object
+              description: resource attributes
+            actions:
+              type: array
+              items:
+                type: string
               description: action on resource
               example: create
         rule:

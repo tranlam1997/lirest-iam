@@ -1,21 +1,14 @@
 import { Policy, PolicyTarget } from './interfaces/policies.interface';
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { ActionType } from '../actions/constants/actions.constant';
 
 export const PolicyTargetSchema = new mongoose.Schema<PolicyTarget>({
-  subjectId: {
-    type: String,
-    required: true,
-  },
-  resourceId: {
-    type: String,
-    required: true,
-  },
-  action: {
-    type: String,
+  subjectAttributes: Schema.Types.Mixed,
+  resourceAttributes: Schema.Types.Mixed,
+  actions: {
+    type: [String],
     enum: Object.values(ActionType),
-    required: true,
   },
 }, {
   _id: false

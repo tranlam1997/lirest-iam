@@ -1,20 +1,7 @@
-import { Permission, PermissionCondition } from './interfaces/permissions.interface';
-import mongoose from "mongoose";
+import { Permission } from './interfaces/permissions.interface';
+import mongoose, { Schema } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { ActionType } from '../actions/constants/actions.constant';
-
-export const PermissionConditionSchema = new mongoose.Schema<PermissionCondition>({
-  attribute: {
-    type: String,
-    required: true,
-  },
-  value: {
-    type: String,
-    required: true,
-  },
-}, {
-  _id: false
-});
 
 export const PermissionSchema = new mongoose.Schema<Permission>({
   permissionId: {
@@ -39,7 +26,7 @@ export const PermissionSchema = new mongoose.Schema<Permission>({
     type: String,
     required: true,
   },
-  condition: [PermissionConditionSchema],
+  conditions: Schema.Types.Mixed,
 }, {
   timestamps: true,
 });
@@ -47,4 +34,3 @@ export const PermissionSchema = new mongoose.Schema<Permission>({
 PermissionSchema.plugin(mongoosePaginate);
 
 export default mongoose.models.Permissions || mongoose.model("Permissions", PermissionSchema);
-

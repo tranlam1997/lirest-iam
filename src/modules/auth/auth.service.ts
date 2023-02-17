@@ -9,6 +9,7 @@ import { KafkaTopics, TopicDestinations } from '@src/common/kafka/topics';
 import { logger } from '@src/common/winston';
 import kafkaProducer from '@src/common/kafka/producer';
 import { LoginData } from './dto/users.dto';
+import { SubjectsRepository } from '../subjects/subjects.repository';
 
 const AuthLogger = logger('auth-service');
 
@@ -16,12 +17,13 @@ export const AuthService = {
   async register(data: User) {
     const transaction = await kafkaProducer.transaction()
     try {
+      const { subjectId } = await SubjectsRepository.findOne({ name: 'admin' });
       AuthLogger.info(`Sending message to Kafka: ${JSON.stringify(data)}`)
       await transaction.send({
         topic: KafkaTopics.USER_REGISTER,
         messages: [
           {
-            value: JSON.stringify(data),
+            value: JSON.stringify({ ...data, subjectId }),
             headers: {
               messageId: randomUUID(),
               topic: KafkaTopics.USER_REGISTER,

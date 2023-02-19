@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { NotFoundException } from '@src/errors/exceptions/not-found-exception';
-import { Model } from 'mongoose';
+import { Model, ClientSession, SaveOptions } from 'mongoose';
 
-type BaseRepositoryResult<T> = {
-  create(doc: any): Promise<T>;
+export type BaseRepositoryResult<T> = {
+  create(doc: any, options?: SaveOptions): Promise<T> ;
   createOrUpdate(doc: any): Promise<T>;
   findById(id: string, options?: any, populates?: string[]): Promise<T>;
   findOne(
@@ -31,13 +31,14 @@ type BaseRepositoryResult<T> = {
   updateMany(conditions: any, doc: any, options?: any): Promise<any>;
   insertMany(docs: any[]): Promise<any>;
   countDocs(filter?: any): Promise<number>;
+  startSession(): Promise<ClientSession>;
 };
 
 export default function BaseRepository<T extends object>(model: Model<T>): BaseRepositoryResult<T> {
   const primaryKey = '_id';
   return {
-    async create(doc: any): Promise<T> {
-      return new model(doc).save();
+    async create(doc: any, options: SaveOptions = {}): Promise<any> {
+      return model.create([doc], options);
     },
 
     async createOrUpdate(doc: any): Promise<T> {
@@ -151,5 +152,9 @@ export default function BaseRepository<T extends object>(model: Model<T>): BaseR
     async countDocs(filter: any = {}) {
       return model.countDocuments(filter);
     },
+
+    async startSession(): Promise<ClientSession> {
+      return model.startSession();
+    }
   };
 }

@@ -19,6 +19,7 @@ config.txt
 
 # ignore all .env files
 .env*
+!.env.sample
 !.env.example
 
 coverage

@@ -9,7 +9,7 @@ RUN npm install -g pnpm
 COPY ["package.json", "pnpm-lock.yaml", ".npmrc", "./"]
 COPY ["tsconfig*.json", "."]
 USER node
-RUN pnpm install --ignore-scripts && rm -f .npmrc
+RUN pnpm install --frozen-lockfile && rm -f .npmrc
 COPY --chown=node:node . .
 RUN pnpm build
 

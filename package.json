@@ -15,7 +15,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage --forceExit --detectOpenHandles --runInBand",
-    "prepare": "husky install && husky add .husky/pre-commit \"lint-staged\"",
     "prebuild": "rimraf dist",
     "build": "tsc -b ./tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "start": "node --trace-warnings -r ts-node/register -r tsconfig-paths/register .",

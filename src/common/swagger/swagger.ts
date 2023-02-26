@@ -2,10 +2,6 @@ import { Application } from 'express';
 import {serve, SwaggerUiOptions, setup } from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import config from 'config';
-import fs from 'fs';
-import path from 'path';
-
-const customCss = fs.readFileSync(path.resolve(__dirname, 'swagger-ui-custom.css'), 'utf8');
 
 const oaS3Options: swaggerJSDoc.OAS3Options = {
   definition: {
@@ -41,7 +37,6 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
 
 const swaggerUIOptions: SwaggerUiOptions = {
   explorer: true,
-  customCss,
   swaggerOptions: {
     validatorUrl: null,
     syntaxHighlight: {

@@ -21,6 +21,7 @@ WORKDIR /home/node/app
 COPY --from=builder --chown=node:node /home/node/app/dist ./
 COPY --from=builder --chown=node:node /home/node/app/config ./config
 COPY --from=builder --chown=node:node /home/node/app/node_modules ./node_modules
+COPY ["src/api-docs", "./api-docs"]
 USER node
 EXPOSE 3030
 CMD ["node", "main.js"]

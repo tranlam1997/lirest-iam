@@ -1,10 +1,12 @@
 # syntax=docker/dockerfile:1
 FROM node:18.14.2-alpine3.17 as builder
 ARG GITHUB_TOKEN
+ARG MONGODB_URI
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
+ENV MONGODB_URI=$MONGODB_URI
 RUN npm install -g pnpm
 COPY ["package.json", "pnpm-lock.yaml", ".npmrc", "./"]
 COPY ["tsconfig*.json", "."]

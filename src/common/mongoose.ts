@@ -17,17 +17,17 @@ export default async function connectToDatabase() {
   try {
     mongoose.set('strictQuery', false);
     await mongoose.connect(config.get('mongodb.uri'), mongooseOptions);
-    DbLogger.info('Connected to MongoDB');
+    DbLogger.info(`Connected to MongoDB: ${config.get('mongodb.uri')}`);
   } catch (error) {
     const timeToRetry = 5000;
-    DbLogger.error(`Error connecting to MongoDB ${error} - Retrying in ${timeToRetry / 1000} seconds`);
+    DbLogger.error(`Error connecting to MongoDB ${'mongodb.uri'} - Error: ${error} - Retrying in ${timeToRetry / 1000} seconds`);
     const interval = setInterval(async () => {
       try {
         await mongoose.connect(config.get('mongodb.uri'), mongooseOptions);
-        DbLogger.info('Connected to MongoDB');
+        DbLogger.info(`Connected to MongoDB: ${config.get('mongodb.uri')}`);
         clearInterval(interval);
       } catch (error) {
-        DbLogger.error(`Error connecting to MongoDB ${error} - Retrying in ${timeToRetry / 1000} seconds`);
+        DbLogger.error(`Error connecting to MongoDB: ${'mongodb.uri'} - Error: ${error} - Retrying in ${timeToRetry / 1000} seconds`);
       }
     }, timeToRetry);
   }

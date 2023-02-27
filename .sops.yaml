@@ -1,0 +1,3 @@
+creation_rules:
+  - encrypted_regex: "^(GITHUB_TOKEN|MONGODB_URI|HOST_NAME)$"
+    age: age10x83hpunjne6wt9g3fkhsrr9a9r07c2fktl0m65epksfum2j93aqvf4gn7

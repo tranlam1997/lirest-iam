@@ -21,12 +21,6 @@ const oaS3Options: swaggerJSDoc.OAS3Options = {
         url: 'https://choosealicense.com/licenses/mit/',
       },
     },
-    servers: [
-      {
-        url: `http://${config.get('service.host')}:${config.get('service.port')}`,
-        description: 'Lirest API Documentation',
-      },
-    ]
   },
   apis: [`${process.cwd()}/**/api-docs/**/*.yaml`],
 };

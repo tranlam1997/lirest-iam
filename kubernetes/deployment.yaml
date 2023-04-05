@@ -1,20 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-app-deployment
+  name: lirest-iam-deployment
+  labels:
+    name: lirest-iam-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node-app
+      app: lirest-iam-app
   template:
     metadata:
       labels:
-        app: node-app
+        app: lirest-iam-app
     spec:
       containers:
-        - name: node-app
-          image: your-docker-image-name:tag
+        - name: lirest-iam-app
+          image: gcr.io/dotted-howl-319203/lirest-iam:tag1
           ports:
             - containerPort: 3030
           resources:

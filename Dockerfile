@@ -9,13 +9,13 @@ RUN npm install -g pnpm
 COPY ["package.json", "pnpm-lock.yaml", ".npmrc", "./"]
 COPY ["tsconfig*.json", "."]
 USER node
-RUN pnpm install --frozen-lockfile && rm -f .npmrc
+RUN pnpm install && rm -f .npmrc
 COPY --chown=node:node . .
 RUN pnpm build
 
 FROM node:18.14.2-alpine3.17
-ARG MONGODB_URI
-ENV MONGODB_URI=$MONGODB_URI
+# ARG MONGODB_URI
+# ENV MONGODB_URI=$MONGODB_URI
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 COPY --from=builder --chown=node:node /home/node/app/dist ./

@@ -10,20 +10,20 @@ mongodb:
   uri: mongodb://localhost:27017/lirest
 
 # Swagger username and password
-api-docs:
-  username: ''
-  password: ''
+# api-docs:
+#   username: ''
+#   password: ''
 
 # Log configuration
 log:
   level: info
 
 # JWT config
-jwt:
-  accessTokenKey: ''
-  refreshTokenKey: ''
-  accessTokenExpiresIn: 1h
-  refreshTokenExpiresIn: 1d
+# jwt:
+#   accessTokenKey: ''
+#   refreshTokenKey: ''
+#   accessTokenExpiresIn: 1h
+#   refreshTokenExpiresIn: 1d
 
 # Kafka config
 kafka:

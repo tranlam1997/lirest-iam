@@ -17,7 +17,7 @@ export default async function bootstrap(app: Application) {
   // load swagger ui
   loadSwaggerUI(app);
 
-  if (config.get('kafka.enabled')) {
+  if (JSON.parse(config.get<string>('kafka.enabled'))) {
     // connect to kafka
     await connectToKafka();
   }

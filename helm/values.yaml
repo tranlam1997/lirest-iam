@@ -1,0 +1,122 @@
+# Default values for helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+    repository: gcr.io/dotted-howl-319203/lirest-iam
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: latest
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: lirest-service-account
+podAnnotations: {}
+podSecurityContext: {}
+# fsGroup: 2000
+securityContext: {}
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+service:
+    type: ClusterIP
+    port: 3030
+    targetPort: 3030
+    protocol: TCP
+ingress:
+    enabled: true
+    className: nginx
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    hosts:
+        - host: api.lirests.com
+          paths:
+            - path: /api/vi/iam
+              pathType: Prefix
+            - path: /api-docs
+              pathType: Prefix
+    tls: []
+    #  - secretName: chart-example-tls
+#    hosts:
+#      - chart-example.local
+resources:
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    limits:
+        cpu: 100m
+        memory: 256Mi
+    requests:
+        cpu: 100m
+        memory: 256Mi
+readinessProbe:
+    httpGet:
+        path: /ready
+        port: 9000
+    failureThreshold: 1
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 10
+livenessProbe:
+    httpGet:
+        path: /live
+        port: 9000
+    failureThreshold: 3
+    initialDelaySeconds: 10
+    # Allow sufficient amount of time (180 seconds = periodSeconds * failureThreshold)
+    # for the registered shutdown handlers to run to completion.
+    periodSeconds: 30
+    successThreshold: 1
+    # Setting a very low timeout value (e.g. 1 second) can cause false-positive
+    # checks and service interruption.
+    timeoutSeconds: 5
+autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+restartPolicy: Always
+nodeSelector: {}
+tolerations: []
+affinity: {}
+configMap:
+    HOST_NAME: api.lirests.com
+    SERVICE_PORT: 3030
+    SERVICE_BASE_URL: /api/v1/iam
+    LOG_LEVEL: info
+    KAFKA_CLIENT_ID: lirest-iam
+    KAFKA_GROUP_ID: lirest-iam-group
+    KAFKA_SERVER_URL: pkc-1dkx6.ap-southeast-1.aws.confluent.cloud:9092'
+    KAFKA_ENABLED: "false"
+secrets:
+    MONGODB_URI: ENC[AES256_GCM,data:hQjpIoxI+p/sR/EcI9egTJztgnh0qCdDEDOW6YjLkrX0RzP4XmG0+MYtTZnHGtW1g1DUz37uYPAAWMF7/FhzDP2gRRXZ72NI5FHSRufUTDVsNiYs3CVv5C5GFQ==,iv:x2vorPVrcqfJpGrRovz8ns+RGg2AlFePNFEbc4Cc8Xo=,tag:a1MPzd2r4VCxqme2CBpU0w==,type:str]
+    KAFKA_SASL_USERNAME: ENC[AES256_GCM,data:BR5SQ2T5OX3DH2c4p7mk1w==,iv:iCYWOAx9lazeqzscMglhIPoZawr5cFU25lO7XprFe5A=,tag:iRfHcTn84GSV0VO/XjGiPw==,type:str]
+    KAFKA_SASL_PASSWORD: ENC[AES256_GCM,data:AdWLYQRlBQrY26TQdWGupFbn9dNK0MhVqh/1wV8FmuQLlvzHXHh4JQs2B6apbDUphTa+HsDdfxpsVWf2u8w0Qg==,iv:9zrxzqeH1NNL0tn9Cj1yBELpEQqmTpV4mjWviNq4t/Q=,tag:zwhvubpVuVsgZLjntGXcPg==,type:str]
+sops:
+    kms: []
+    gcp_kms:
+        - resource_id: projects/dotted-howl-319203/locations/global/keyRings/sops/cryptoKeys/sops-key
+          created_at: "2023-04-30T13:56:20Z"
+          enc: CiQAmgMp+sirwVGeCkWsbe6A57fR45SiuUhD8QWdAr+WydATOmUSSQB80D3fBORhG71DuI4O+MTpCoyACvNmqXcbmtDZeheEtvH1W6Y03uafkpLlgpaI7gwew2HM2nmNLvg7oWjt1eiBRc1KP0qUOoM=
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2023-04-30T13:56:20Z"
+    mac: ENC[AES256_GCM,data:IBqqTQZX+J36DQGDRO83iEEUAogGjHihVIBeOqe2BqjDbkVxPFxphaRcgeOEAzBHTRX1saK6e9VsSdvdIr+WcrPt97vjDMnmLl/d5cWOxynjyD8HyyByK1mc1p2porUB0r+vdITxDzGvNOPeNBqHZTYduJIGEvMBGH1ajgALeF8=,iv:XZ/cQ6rprd3kCM40Y2gWUAuxIxeN0yz6TGhe2KtMgnY=,tag:H1b9uu0d7S5EMdRE91Jpcw==,type:str]
+    pgp: []
+    encrypted_regex: ^(secrets)$
+    version: 3.7.3

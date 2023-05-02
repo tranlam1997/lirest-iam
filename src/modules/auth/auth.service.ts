@@ -22,7 +22,7 @@ export const AuthService = {
     try {
       const payload = { ...data, subjectId }
       session.startTransaction();
-      await UsersRepository.create(payload, { session })
+      await UsersRepository.create(payload, { session });
       AuthLogger.info(`Sending message to Kafka: ${JSON.stringify(payload)}`);
       await transaction.send({
         topic: KafkaTopics.USER_REGISTER,
@@ -48,9 +48,9 @@ export const AuthService = {
       throw new BadRequestException({ message: 'Something went wrong', error: err });
     } finally {
       await session.endSession();
+      return { success: true };
     }
 
-    return { success: true };
   },
 
   async login({ username = null, email = null, password }: LoginData) {

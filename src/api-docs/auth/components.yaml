@@ -9,7 +9,7 @@ components:
           type: string
           description: username of user
           example: username
-        emaii:
+        email:
           type: string
           description: email of user
           example: email

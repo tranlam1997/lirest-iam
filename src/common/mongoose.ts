@@ -7,7 +7,7 @@ const mongooseOptions = {
   maxPoolSize: 10,
   connectTimeoutMS: 10000,
   socketTimeoutMS: 45000,
-  family: 4,
+  dbName: 'lirest',
 } as ConnectOptions;
 
 const DbLogger = logger('mongoose');

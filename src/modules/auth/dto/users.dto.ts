@@ -2,8 +2,8 @@ import { BaseBodyRequest } from "@src/base/request";
 import { User } from "../interfaces/users.interface";
 
 export interface LoginData {
-  username: string | null;
-  email: string | null;
+  username?: string;
+  email?: string;
   password: string;
 }
 

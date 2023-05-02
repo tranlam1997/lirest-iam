@@ -1,36 +1,45 @@
 # Service config
 service:
-  name: lirest-iam
-  host: 127.0.0.1
-  port: 3030
-  baseUrl: /api/v1/iam
-
+    name: lirest-iam
+    host: 127.0.0.1
+    port: 3030
+    baseUrl: /api/v1/iam
 # Database configuration
 mongodb:
-  uri: mongodb://localhost:27017/lirest
-
+    uri: ENC[AES256_GCM,data:b7OkXC+6bvZ8jQF76OBq3D57/vvgmASkylLbC1ONAYNzGfHVkJ1te+/kjuXeLpVWNdsB0XgXgainlZf97YWJbBkzXw2yRzhBbGlKIaZDux1i54H5qQ==,iv:I9mTxpRfjTzktuKjghQwnvNPyi1CA/VMH4xzcNfQfmQ=,tag:my95Vk+Z2ba4GrRPoInv2Q==,type:str]
 # Swagger username and password
-# api-docs:
-#   username: ''
-#   password: ''
-
+api-docs:
+    username: ""
+    password: ""
 # Log configuration
 log:
-  level: info
-
+    level: info
 # JWT config
-# jwt:
-#   accessTokenKey: ''
-#   refreshTokenKey: ''
-#   accessTokenExpiresIn: 1h
-#   refreshTokenExpiresIn: 1d
-
+jwt:
+    accessTokenKey: ENC[AES256_GCM,data:qqXav7I9n5vAn1dDNq0IrBQ+6SOTndZvwNv4Yruw9FX4u8unUhUmcvxSwlChQdI0nDBW7x+RjUMYIAGdNEkoxx6xa2IEOcPjjpvopx+yMLUNLQKwn58=,iv:qn71DNgG7VBFFh0UGzyoaVNzfXejwy9EJqahl+agtLo=,tag:U11iLc5g1SKHmt/T2a/L4g==,type:str]
+    refreshTokenKey: ENC[AES256_GCM,data:YF4zYbOm+QdpIyMKigYwoOhdPzv4TT3qeU4DQ3hM8sItzJefPLnpHbRlU3va56XMFxLOPPqW9yKxFn/GvwjYuzv50hChioo4P0yuRriyt01iqnm7ods=,iv:ycJuu6b/DGRXNI/mAu8CTvRe++3G7SkWU+lyuJwXdqU=,tag:lE9AORg1+hgU9fIXkrPpKA==,type:str]
+    accessTokenExpiresIn: ENC[AES256_GCM,data:4kw=,iv:Ue+Op4vWwVSL+G9RiCThQ8AAL3VhMT7j+O2FBANzc3U=,tag:j2QahbRovjMYUnxe7ROO3g==,type:str]
+    refreshTokenExpiresIn: ENC[AES256_GCM,data:HwY=,iv:jJhC9erfUHC+Wjn7v0p/v1+M9MhbvrVrrF3R5mXTAIU=,tag:PjsrK6KIGhBimIUXi9CusA==,type:str]
 # Kafka config
 kafka:
-  clientId: lirest-iam
-  groupId: lirest-iam-group
-  serverUrl: kafka://localhost:9092
-  sasl:
-    username: ''
-    password: ''
-  enabled: false
+    clientId: ENC[AES256_GCM,data:Tpl/PcyRSzmm3g==,iv:YUkGlFHnCGhcLKWeqLqvNbWjiXODJeXMFV1gPnFIul4=,tag:IFd/1Ix9c4ysD6rUVFkKXA==,type:str]
+    groupId: ENC[AES256_GCM,data:J6Nz7pQSXI75KjKZ5jZO6g==,iv:bVGSxy95n/94HAW+X6283HsZ7sb0nnEyG1xRbYEJq+c=,tag:9j/wtXIO/0/3hPikFHKppA==,type:str]
+    serverUrl: ENC[AES256_GCM,data:PmsmuC2Y9CYVv7XPQIbWxNnfuHk6b96e1XHGiHgJOnCc6tDHmLZm9GALyHQ+V6edSw==,iv:pYN6/li7sbfaiDwy5nhuywqks14KqlnIgo+aG1MYIII=,tag:w1cp7GV4YU5m3VIVeUh1xg==,type:str]
+    sasl:
+        username: ENC[AES256_GCM,data:0KPpcIxP5pniB6UgO2L+Yg==,iv:iIyhZ4rRfK43/w3MDf715CVKgr8FvMH92HkWsSUtwc0=,tag:7Ef6dzgmZMDxrH6KaBjVoA==,type:str]
+        password: ENC[AES256_GCM,data:BJG4ePJHmOAmpscRj+p1f3XAKXmj4rIVNEY4fixa2KrAwrXL1xvvk7w7F3ssWHZ5jbkflV3+VPy7mS1raDnaVw==,iv:KxIryQzWGjILeJWD/2goMxZDfsjlHT5cEUbCLc6GRuw=,tag:TPTPow5fXd9n18w7R4C22A==,type:str]
+    enabled: ENC[AES256_GCM,data:sro8+w==,iv:9OO+lc9rks+8WFAX4dAdO2VO4nfyDxLRNtIgmS9OKmQ=,tag:yB1N3Kb01RbAPke/V8K8ug==,type:bool]
+sops:
+    kms: []
+    gcp_kms:
+        - resource_id: projects/dotted-howl-319203/locations/global/keyRings/sops/cryptoKeys/sops-key
+          created_at: "2023-05-02T16:48:02Z"
+          enc: CiQAmgMp+mbHJ8j0NE0lJAlQwYZU3BMGRFylCgBq71PcpNSOU+YSSQB80D3fHAhhfZni2p7fL2YZN37YtCurnJ4ZUjUywjjo3wKn/S6fesFF1okrS7Pja14Q0n16N0QxrfYKTwxVx2FerkK/td7KGXI=
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2023-05-02T16:48:03Z"
+    mac: ENC[AES256_GCM,data:Ex/cxk/XFOKJefPK/esrsUkQQC81Ce7Ccf1fqFt3KytGvq2QqJE0rvdoMr4frr+NACaR8F2mYi1zsl2vmAZ3LLo3gNQLCWYpsTLkw/3yGlfuEov1NaaH8Rbkp9Aq4ZyEse4K8XvUwlgUoz5xELH9XIijHji0YQn3c5Yd+kZlafg=,iv:wjJXip2rp/Pc2nvTp6XWSUnmZJBge7brYHLasptoL/A=,tag:FKMwS/vcaS5cK+Fio803Hg==,type:str]
+    pgp: []
+    encrypted_regex: ^(secrets|mongodb|jwt|kafka)$
+    version: 3.7.3

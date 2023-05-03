@@ -4,6 +4,10 @@ import { User } from "../interfaces/users.interface";
 import bcrypt from "bcryptjs";
 
 export const UserSchema = new mongoose.Schema<User>({
+  userId: {
+    type: String,
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,

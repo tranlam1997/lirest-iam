@@ -15,12 +15,13 @@ import mongoose from 'mongoose';
 const AuthLogger = logger('auth-service');
 
 export const AuthService = {
-  async register(data: User) {
+  async register(data: Omit<User, '_id' | 'userId'>) {
     const { subjectId = '1' } = (await SubjectsRepository.findOne({ name: 'admin' })) ?? {};
     const transaction = await kafkaProducer.transaction();
     const session = await mongoose.startSession();
     try {
-      const payload = { ...data, subjectId }
+      const userId = randomUUID();
+      const payload = { ...data, userId, subjectId }
       session.startTransaction();
       await UsersRepository.create(payload, { session });
       AuthLogger.info(`Sending message to Kafka: ${JSON.stringify(payload)}`);
@@ -68,31 +69,38 @@ export const AuthService = {
       throw new BadRequestException('Password is not valid');
     }
 
+    const accessTokenExpiredIn = config.get<string>('jwt.accessTokenExpiresIn');
+    const refreshTokenExpiredIn = config.get<string>('jwt.refreshTokenExpiresIn');
+    const accessTokenKey = config.get<string>('jwt.accessTokenKey');
+    const refreshTokenKey = config.get<string>('jwt.refreshTokenKey');
+
     const accessToken = jwt.sign(
       {
+        userId: user.userId,
         username: user.username,
-        email: user.email,
         subjectId: user.subjectId,
+        refreshTokenExpiredIn
       },
-      config.get<string>('jwt.accessTokenKey'),
+      accessTokenKey,
       {
-        expiresIn: config.get<string>('jwt.accessTokenExpiresIn'),
+        expiresIn: accessTokenExpiredIn,
       },
     );
 
     const refreshToken = jwt.sign(
       {
+        userId: user.userId,
         username: user.username,
-        email: user.email,
         subjectId: user.subjectId,
       },
-      config.get<string>('jwt.refreshTokenKey'),
+      refreshTokenKey,
       {
-        expiresIn: config.get<string>('jwt.refreshTokenExpiresIn'),
+        expiresIn: refreshTokenExpiredIn,
       },
     );
 
     return {
+      userId: user._id,
       accessToken,
       refreshToken,
     };

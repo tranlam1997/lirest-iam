@@ -9,7 +9,6 @@ import gracefulShutdown from './shared/event-handler';
 
 (async () => {
   const app: express.Application = express();
-  logger('main').info(`Config: ${JSON.stringify(config.util.toObject())}`)
   const port = config.get('service.port');
   app.use(requestTracingMiddleware());
   const lightship = await createLightship();

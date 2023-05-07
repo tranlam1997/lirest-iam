@@ -2,6 +2,7 @@ import { asyncHandler } from '../../shared/helper';
 import { Request, Response, Router } from 'express';
 import { ActionsService } from './actions.service';
 import { CreateActionRequestDTO } from './dto/actions.dto';
+import httpRequestTimer from '../../common/prometheus/metrics/request-timer';
 
 const ActionsRouter = Router();
 
@@ -12,7 +13,9 @@ export default (app: Router) => {
      */
     .post(
       asyncHandler(async (req: CreateActionRequestDTO, res: Response) => {
+        const end = httpRequestTimer.startTimer();
         const role = await ActionsService.createAction(req.body);
+        end({ route: req.originalUrl, code: res.statusCode, method: req.method });
         return res.status(201).json(role);
       }),
     )
@@ -20,8 +23,10 @@ export default (app: Router) => {
      * Get all actions
      */
     .get(
-      asyncHandler(async (_req: Request, res: Response) => {
+      asyncHandler(async (req: Request, res: Response) => {
+        const end = httpRequestTimer.startTimer();
         const actions = await ActionsService.getAllActions();
+        end({ route: req.originalUrl, code: res.statusCode, method: req.method });
         return res.status(200).json(actions);
       }),
     );

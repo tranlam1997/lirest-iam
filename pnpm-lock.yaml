@@ -32,6 +32,7 @@ specifiers:
   mongoose-paginate-v2: ^1.7.1
   openapi-types: ^12.1.0
   prettier: ^2.8.2
+  prom-client: ^14.2.0
   reflect-metadata: ^0.1.13
   request-ip: ^3.3.0
   rimraf: ^3.0.2
@@ -63,6 +64,7 @@ dependencies:
   mongoose: 6.8.4
   mongoose-paginate-v2: 1.7.1
   openapi-types: 12.1.0
+  prom-client: 14.2.0
   reflect-metadata: 0.1.13
   request-ip: 3.3.0
   rimraf: 3.0.2
@@ -2378,6 +2380,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /bintrees/1.0.2:
+    resolution: {integrity: sha512-VOMgTMwjAaUG580SXn3LacVgjurrbMme7ZZNYGSSV7mmtY6QQRh0Eg3pwIcntQ77DErK1L0NxkbetjcoXzVwKw==}
+    dev: false
+
   /body-parser/1.20.1:
     resolution: {integrity: sha512-jWi7abTbYwajOytWCQc37VulmWiRae5RyTpaCyDcS5/lMdtwSz5lOpDE67srw/HYe35f1z3fDQw+3txg7gNtWw==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
@@ -4055,6 +4061,13 @@ packages:
     engines: {node: '>= 0.6.0'}
     dev: false
 
+  /prom-client/14.2.0:
+    resolution: {integrity: sha512-sF308EhTenb/pDRPakm+WgiN+VdM/T1RaHj1x+MvAuT8UiQP8JmOEbxVqtkbfR4LrvOg5n7ic01kRBDGXjYikA==}
+    engines: {node: '>=10'}
+    dependencies:
+      tdigest: 0.1.2
+    dev: false
+
   /protobufjs/6.11.3:
     resolution: {integrity: sha512-xL96WDdCZYdU7Slin569tFX712BxsxslWwAfAhCYjQKGTq7dAU91Lomy6nLLhh/dyGhk/YH4TwTSRxTzhuHyZg==}
     hasBin: true
@@ -4632,6 +4645,12 @@ packages:
     dependencies:
       express: 4.18.2
       swagger-ui-dist: 4.15.5
+    dev: false
+
+  /tdigest/0.1.2:
+    resolution: {integrity: sha512-+G0LLgjjo9BZX2MfdvPfH+MKLCrxlXSYec5DaPYP1fe6Iyhf0/fSmJ0bFiZ1F8BT6cGXl2LpltQptzjXKWEkKA==}
+    dependencies:
+      bintrees: 1.0.2
     dev: false
 
   /text-hex/1.0.0:
